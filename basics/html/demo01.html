@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React demo01</title>
+    <link rel="stylesheet" href="./../css/reset.css">
+    <script src="./../utils/react.js"></script>
+    <script src="./../utils/reactDom.js"></script>
+    <script src="./../utils/babel.js"></script>
+    <script src="./../utils/domEvemt.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        /**
+         * ReactDOM.render(要渲染的内容, 放置内容的容器)
+         * ReactDOM：react框架提供的一个对象
+         * 放置内容的容器不能是body
+         */
+        
+        // ReactDOM.render(
+        //     'Hello world !',
+        //     getDomById('div')
+        // )
+
+        /**
+         * JSX
+         * JavaScript和XML的合称
+         * XML也是一种可扩展标记语言
+         * 语法：
+         *  1、可以在JS中书写XML、HTML标签
+         *  2、只能有且仅有一个顶层元素
+         *  3、可以包含子节点
+         *  4、支持差值表达式, 类似ES6中的摸板字符串 ${表达式},JSX中的差值表达之使用的是：{表达式}
+         */
+        ReactDOM.render(
+            <div>
+                <h1>Hello React</h1>
+                <h2>Hello pxy</h2>
+                <p>{'1 + 2 + 3 = ' + (1 + 2 + 3)}</p>
+            </div>,
+            getDomById('div')
+        )
+    </script>
+</body>
+</html>

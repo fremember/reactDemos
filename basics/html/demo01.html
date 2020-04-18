@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React demo01</title>
     <link rel="stylesheet" href="./../css/reset.css">
+    <link rel="stylesheet" href="./../css/demo01.css">
     <script src="./../utils/react.js"></script>
     <script src="./../utils/reactDom.js"></script>
     <script src="./../utils/babel.js"></script>
@@ -34,11 +35,607 @@
          *  3、可以包含子节点
          *  4、支持差值表达式, 类似ES6中的摸板字符串 ${表达式},JSX中的差值表达之使用的是：{表达式}
          */
+        let user = {
+            firstName: 'peng',
+            lastName: 'xiangyang',
+            name: 'pxy',
+            avatarUrl: './1.jpg',
+            time: '',
+            bol: false,
+            unreadMessages: ['abs', 'def', 'eth']
+        }
+
+        function formatName (user) {
+            return `${user.firstName} ${user.lastName}`
+        }
+
+        function getGreetng (user) {
+            if(user) {
+                return <p>直接执行函数返回JSX表达式：{ formatName(user) }</p>
+            } else {
+                return <p>Hello, Stranger.</p>
+            }
+        }
+        /*
+        function tick () {
+            ReactDOM.render(
+                <div>{ new Date().toLocaleTimeString() }</div>,
+                getDomById('div')
+            )
+        }
+        setInterval(tick, 1000)
+        */
+       
+        /*
+        function Clock (props) {
+            return (
+                <div>
+                    <h1>Hello World</h1>
+                    <h2>It is { props.date.toLocaleTimeString() }.</h2>
+                </div>
+            )
+        }
+
+        function tick () {
+            ReactDOM.render(
+                <Clock date={new Date()} />,
+                getDomById('div')
+            )
+        }
+
+        setInterval(tick, 1000)
+        */
+
+        function Welcome (props) {
+            return <p>hello, { props.name }</p>
+        }
+
+
+        function Avatar (props) {
+            return <img class="avatar" src={props.avatarUrl} />
+        }
+        function Userinfo (props) {
+            return (
+                <div className="UserInfo">
+                    <Avatar avatarUrl={props.author.avatarUrl} />
+                    <div className="UserInfo-name">
+                        {props.author.name}
+                    </div>
+                </div>
+            )
+        }
+        function clickEvent () {
+            console.log(123)
+        }
+        function ActionLink () {
+            function handleClick(e) {
+                e.preventDefault();
+                console.log('The link was clicked.');
+            }
+
+            return (
+                <a href="https://baidu.com" onClick={handleClick}>使用preventDefault显示的阻止默认行为</a>
+            )
+        }
+
+        function UserGreeting (props) {
+            return <h1>welcome UserGreeting</h1>
+        }
+        function GuestGreeting (props) {
+            return <h1>welcome GuestGreeting</h1>
+        }
+        function Greeting (props) {
+            const isLoggedIn = props.isLoggedIn
+            if(isLoggedIn) {
+                return <UserGreeting />
+            } else {
+                return <GuestGreeting />
+            }
+        }
+        
+        function LoginButton (props) {
+          return (
+            <button onClick={props.onClick}>Login</button>
+          )
+        }
+
+        function LogoutButton (props) {
+          return (
+            <button onClick={props.onClick}>Logout</button>
+          )
+        }
+
+        class LoginControl extends React.Component {
+          constructor(props) {
+            super(props)
+            this.handleLoginClick = this.handleLoginClick.bind(this)
+            this.handleLogoutClick = this.handleLogoutClick.bind(this)
+            this.state = { isLoggedIn: false }
+          }
+          handleLoginClick () {
+            this.setState({ isLoggedIn: true })
+          }
+          handleLogoutClick () {
+            this.setState({ isLoggedIn: false })
+          }
+          render () {
+            const isLoggedIn = this.state.isLoggedIn
+            let button;
+            if(isLoggedIn) {
+              button = <LogoutButton onClick={this.handleLogoutClick} />
+            } else {
+              button = <LoginButton onClick={this.handleLoginClick} />
+            }
+            return (
+              <div>
+                <Greeting isLoggedIn={isLoggedIn} />
+                { button }
+              </div>
+            )
+          }
+        }
+
+        function Mailbox (props) {
+            const unreadMessages = props.unreadMessages
+            return (
+                <div>
+                    {
+                        unreadMessages.length > 0 
+                        &&
+                        <h2>you have { unreadMessages.length } unread messages</h2>
+                    }
+                </div>
+            )
+        }
+
+        function Condition (props) {
+            return (
+                <div>
+                    { props.bol ? 'True' : 'False' }
+                </div>
+            )
+        }
+
+        function WarningBanner (props) {
+            if(!props.warn) {
+                return null
+            }
+            return (
+                <div>warning</div>
+            )
+        }
+
+        class Page extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = { warning: true }
+                this.handleToogleClick = this.handleToogleClick.bind(this)
+            }
+            handleToogleClick () {
+                this.setState(state => ({
+                    warning: !state.warning
+                }))
+            }
+            render () {
+                return (
+                    <div>
+                        <WarningBanner warn={this.state.warning} />
+                        <button onClick={this.handleToogleClick}>
+                            { this.state.warning ? 'hide' : 'Show' }
+                        </button>
+                    </div>
+                )
+            }
+        }
+
+        let numbers = [1, 2, 3],
+            listItems = numbers.map((number) =>
+                <li>{ number }</li>
+            );
+
+        function NumberList (props) {
+            let numbers = props.numbers,
+                listNumbers = numbers.map((number) => <li key={number.toString()}>{ number }</li>)
+            return <ul>{ listNumbers }</ul>
+        }
+
+        class NameForm extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = { value: '' }
+
+                this.handleChange = this.handleChange.bind(this)
+                this.handleSubmit = this.handleSubmit.bind(this)
+            }
+            handleChange (e) {
+                this.setState({ value: e.target.value })
+            }
+            handleSubmit (e) {
+                console.log('提交的名字是' + this.state.value)
+                e.preventDefault()
+            }
+
+            render () {
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            名字:
+                            <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+
+        class EssayFrom extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = { value: '' }
+                this.handleChange = this.handleChange.bind(this)
+                this.handleSubmit = this.handleSubmit.bind(this)
+            }
+            handleChange (e) {
+                this.setState({ value: e.target.value })
+            }
+            handleSubmit (e) {
+                console.log(this.state.value)
+                e.preventDefault()
+            }
+
+            render () {
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            文章:
+                            <textarea value={this.state.value} onChange={this.handleChange}></textarea>
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+
+        class FlavorForm extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = { value: '' }
+                this.handleChange = this.handleChange.bind(this)
+                this.handleSubmit = this.handleSubmit.bind(this)
+            }
+            handleChange (e) {
+                this.setState({ value: e.target.value })
+            }
+            handleSubmit (e) {
+                console.log('选择你喜欢的风味: ' + this.state.value)
+                e.preventDefault()
+            }
+
+            render () {
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            选择你喜欢的风味:
+                            <select value={this.state.value} onChange={this.handleChange}>
+                                <option value="grapefruit">葡萄柚</option>
+                                <option value="lime">酸橙</option>
+                                <option value="coconut">椰子</option>
+                                <option value="mango">芒果</option>
+                            </select>
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+
+        class Reservation extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    isGoing: true,
+                    numberOfGuests: 2
+                }
+                this.handleInputChange = this.handleInputChange.bind(this)
+                this.handleSubmit = this.handleSubmit.bind(this)
+            }
+            handleInputChange (e) {
+                let target = e.target,
+                    name = target.name,
+                    value = name === 'isGoing' ? target.checked : target.value;
+                this.setState({ [name]: value })
+            }
+            handleSubmit (e) {
+                console.log(this.state)
+                e.preventDefault()
+            }
+            render () {
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            参与:
+                            <input type="checkbox" name="isGoing" checked={ this.state.isGoing } onChange={ this.handleInputChange } />
+                        </label>
+                        <br />
+                        <label>
+                            来宾人数:
+                            <input type="number" name="numberOfGuests" value={ this.state.numberOfGuests } onChange={ this.handleInputChange } />
+                        </label>
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+
+        function BoilingVerdict (props) {
+            if(props.celsius >= 100) {
+                return <p>The water would boil.</p>
+            } else {
+                return <p>The water would not boil.</p>
+            }
+        }
+        class Calculator extends React.Component {
+            constructor(props) {
+                super(props)
+                this.handleChange = this.handleChange.bind(this)
+                this.state = {temperature: ''}
+            }
+            handleChange (e) {
+                this.setState({ temperature: e.target.value })
+            }
+            render () {
+                let temperature = this.state.temperature
+                return (
+                    <fieldset>
+                        <legend>Enter temperature in Celsius:</legend>
+                        <input type="text" value={ temperature } onChange={ this.handleChange } />
+                        <BoilingVerdict celsius={ parseFloat(temperature) } />
+                    </fieldset>
+                )
+            }
+        }
+        
+        const scaleNames = {
+            c: 'Celsius',
+            f: 'Fahrenheit'
+        }
+        class TemperatureInput extends React.Component {
+            constructor(props) {
+                super(props)
+                this.handleChange = this.handleChange.bind(this)
+                this.state = { temperature: '' }
+            }
+
+            handleChange (e) {
+                this.setState({ temperature: e.target.value })
+            }
+
+            render () {
+                let temperature = this.state.temperature,
+                    scale = this.props.scale;
+                return (
+                    <fieldset>
+                        <legend>Enter temperature in { scaleNames[scale] } :</legend>
+                        <input type="text" value={ temperature } onChange={ this.handleChange } />
+                    </fieldset>
+                )
+            }
+        }
+
+        class Calculator2 extends React.Component {
+            render () {
+                return (
+                    <div>
+                        <TemperatureInput scale="c" />
+                        <TemperatureInput scale="f" />
+                      </div>
+                )
+            }
+        }
+
+        function toCelsius (fahrenheit) {
+            return (fahrenheit - 32) * 5 / 9
+        }
+        function toFahrenheit (celsius) {
+            return (celsius * 9 / 5) + 32
+        }
+        function tryConvert (temperature, convert) {
+            let input = parseFloat(temperature)
+            if(Number.isNaN(input)) {
+                return ''
+            }
+            let output = convert(input),
+                rounded = Math.round(output * 1000) / 1000;
+            return rounded.toString()
+
+        }
+
+        function BoilingVerdict3 (props) {
+            if(props.celsius >= 100) {
+                return <p>The water would boil.</p>
+            } else {
+                return <p>The water would not boil.</p>
+            }
+        }
+
+        class TemperatureInput3 extends React.Component {
+            constructor(props) {
+                super(props)
+                this.handleChange = this.handleChange.bind(this)
+            }
+            handleChange (e) {
+                this.props.onTemperatureChange(e.target.value)
+            }
+            render () {
+                let temperature = this.props.temperature,
+                    scale = this.props.scale;
+                return (
+                    <fieldset>
+                        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+                        <input type="text" value={ temperature } onChange={this.handleChange} />
+                    </fieldset>
+                )
+            }
+        }
+
+        class Calculator3 extends React.Component {
+            constructor (props) {
+                super(props)
+                this.handleCelsiusChange = this.handleCelsiusChange.bind(this)
+                this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this)
+                this.state = { temperature: '', scale: 'c' }
+            }
+            
+            handleCelsiusChange (temperature) {
+                this.setState({ scale: 'c', temperature })
+            }
+
+            handleFahrenheitChange (temperature) {
+                this.setState({ scale: 'f', temperature })
+            }
+
+            render () {
+                let scale = this.state.scale,
+                    temperature = this.state.temperature,
+                    celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature,
+                    fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+                return (
+                    <div>
+                        <TemperatureInput3 scale="c" temperature={celsius} onTemperatureChange={ this.handleCelsiusChange } />
+                        <TemperatureInput3 scale="f" temperature={fahrenheit} onTemperatureChange={ this.handleFahrenheitChange } />
+                        <BoilingVerdict celsius={parseFloat(celsius)} />
+                    </div>
+                )
+            }
+        }
+
+
+        function FancyBorder (props) {
+            return (
+                <div className={'FancyBorder FancyBorder-' + props.color}>
+                    { props.children }
+                </div>
+            )
+        }
+
+        function WelcomeDialog () {
+            return (
+                <FancyBorder color="blue">
+                    <h1 className="Dialog-title">Welcome</h1>
+                    <p className="Dialog-message">Thank you for visiting our spacecraft!</p>
+                    <p>asdf</p>
+                </FancyBorder>
+            )
+        }
+
+        function Dialog (props) {
+            return (
+                <FancyBorder color="blue">
+                    <h1 className="Dialog-title">{ props.title }</h1>
+                    <h1 className="Dialog-message">{ props.message }</h1>
+                </FancyBorder>
+            )
+        }
+
+        function WelcomeDialog2 () {
+            return (
+                <Dialog title="Welcome" message="this is a message" />
+            )
+        }
+
+        function Dialog3 (props) {
+            return (
+                <FancyBorder color="blue">
+                    <h1 className="Dialog-title">{ props.title }</h1>
+                    <p className="Dialog-message">{ props.message }</p>
+                    { props.children }
+                </FancyBorder>
+            )
+        }
+
+        class SignUpDialog extends React.Component {
+            constructor(props) {
+                super(props)
+                this.handleChange = this.handleChange.bind(this)
+                this.handleSignUp = this.handleSignUp.bind(this)
+                this.state = { login: '' }
+            }
+            handleChange (e) {
+                this.setState({ login: e.target.value })
+            }
+            handleSignUp () {
+                console.log(`Welcome aboard, ${this.state.login}`)
+            }
+            render () {
+                return (
+                    <Dialog3 title="Mars Exploration Program" message="How should we refer to you?">
+                        <input type="text" value={ this.state.login } onChange={this.handleChange} />
+                        <button onClick={this.handleSignUp}>Sign Me Up</button>
+                    </Dialog3>
+                )
+            }
+        }
+
         ReactDOM.render(
             <div>
                 <h1>Hello React</h1>
                 <h2>Hello pxy</h2>
-                <p>{'1 + 2 + 3 = ' + (1 + 2 + 3)}</p>
+                <p>{ '1 + 2 + 3 = ' + (1 + 2 + 3) }</p>
+                <p>直接执行函数返回字符串：{ formatName(user) }</p>
+                { getGreetng(user) }
+                <div name="abc">属性值指定为字符串字面量</div>
+                <img className="avatar" src={user.avatarUrl} alt="avatar"></img>
+                <img class="avatar" src={user.avatarUrl} alt="avatar"></img>
+                <img class="avatar" src={user.avatarUrl} />
+                <p>{ user.time }</p>
+                <Welcome name="fremember" />
+                <Welcome name="Tom" />
+
+
+                <div className="common">
+                    <Userinfo author={user} />
+                </div>
+
+                <div onClick={clickEvent}>触发点击事件</div>
+
+                <ActionLink />
+
+                <Greeting isLoggedIn={user.bol} />
+
+                <LoginControl />
+                
+                <Mailbox  unreadMessages={ user.unreadMessages } />
+
+                <Condition bol={ user.bol } />
+
+               <Page />
+               <ul>{ listItems }</ul>
+
+               <NumberList numbers={numbers} />
+
+               <NameForm />
+
+               <EssayFrom />
+
+               <FlavorForm />
+
+               <Reservation />
+
+               <Calculator />
+
+               <Calculator2 />
+
+               <hr />
+
+               <Calculator3 />
+
+               <WelcomeDialog />
+
+               <WelcomeDialog2 />
+
+               <hr />
+
+               <SignUpDialog />
             </div>,
             getDomById('div')
         )

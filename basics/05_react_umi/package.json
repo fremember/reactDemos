@@ -1,0 +1,20 @@
+{
+  "name": "05_react_umi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@umijs/preset-react": "^1.4.19",
+    "umi": "^3.1.2"
+  },
+  "dependencies": {
+    "antd": "^4.2.0",
+    "axios": "^0.19.2"
+  }
+}

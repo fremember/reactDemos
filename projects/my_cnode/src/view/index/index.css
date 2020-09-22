@@ -1,0 +1,62 @@
+@charset "UTF-8";
+.sub-nav {
+    z-index: 2;
+}
+.sub-nav a {
+    display: block;
+    margin-right: -1px;
+    font: 14px / 36px "宋体";
+    color: #333;
+    border-right: 1px solid transparent;
+}
+.sub-nav a:hover,
+.sub-nav .active {
+    border-right-color: #1890ff;
+    background: #e6f7ff;
+    color: #1890ff;
+}
+.index-list {
+    padding: 5px 10px;
+    height: 100%;
+    overflow-y: auto;
+    border-left: 1px solid #ccc;
+}
+.index-list::-webkit-scrollbar-thumb {
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: rgba(0,0,0,0.2);
+	border-radius: 10px;
+}
+.index-list::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: rgba(0,0,0,0.1);
+	border-radius: 0;
+}
+.index-list::-webkit-scrollbar {
+	width: 2px;
+}
+@media all and (max-width: 767px) {
+    .sub-nav {
+        position: fixed !important;
+        top: 64px;
+        left: 0;
+        padding: 0 30px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        width: 100%;
+        background: #fff;
+    }
+    .sub-nav a {
+        margin-bottom: -1px;
+        flex: 1;
+        border: none;
+        border-bottom: 3px solid transparent;
+    }
+    .sub-nav a:hover,
+    .sub-nav .active {
+        border-bottom-color: #1890ff;
+        background: none;
+    }
+    .index-list {
+        border-left: none;
+    }
+}

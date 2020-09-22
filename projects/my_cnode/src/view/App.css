@@ -1,0 +1,13 @@
+.main {
+  margin-top: 64px;
+  margin-bottom: 80px;
+  width: 100%;
+  height: calc(100% - 144px);
+}
+@media all and (max-width: 767px) {
+  .main {
+    margin-top: 103px;
+    margin-bottom: 68px;
+    height: calc(100% - 171px);
+  }
+}

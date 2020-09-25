@@ -98,3 +98,6 @@
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
 }
+.main-wrap img {
+    max-width: 100%;
+}

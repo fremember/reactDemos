@@ -1,8 +1,10 @@
 .main {
   margin-top: 64px;
   margin-bottom: 80px;
+  padding: 0 50px;
   width: 100%;
   height: calc(100% - 144px);
+  overflow-y: auto;
 }
 @media all and (max-width: 767px) {
   .main {

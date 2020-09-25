@@ -27,7 +27,7 @@ class IndexList extends Component {
         let { tab, page } = this.state
         this.update(tab, page)
     }
-    componentWillReceiveProps (nextProps) {
+    UNSAFE_componentWillReceiveProps (nextProps) {
         let path = nextProps.location.pathname.split('/'),
             tab = path[path.length - 1];
         if(tab !== this.state.tab) {

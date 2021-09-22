@@ -1,0 +1,343 @@
+<!--
+ * @Author: fremember
+ * @Date: 2021-08-03 10:11:20
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react核心状态、属性、ref</title>
+    <style>
+        .title {
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        /* 使用jsx语法 */
+        // let myId = 'pxy 1234',
+        //     ulList = [
+        //         { text: 'Angular', id: '1' },
+        //         { text: 'React', id: '2' },
+        //         { text: 'vue', id: '3' }
+        //     ],
+        //     olList = [ 'js', 'node', 'npm' ],
+        //     flag = false;
+        // const VDom = <div>
+        //                 <h1 className="title">hello world</h1>
+        //                 <h1 style={{ color: '#f00' }}>hello { myId }</h1>
+        //                 <ul>
+        //                     {
+        //                         ulList.map(item => <li key={ item.id }>{ item.text }</li>)
+        //                     }
+        //                 </ul>
+        //                 <div>{ flag ? '正确' : '错误' }</div>
+        //                 <ol>
+        //                     {
+        //                         olList.map((item, index) => <li key={ index }>{ item }</li>)
+        //                     }
+        //                 </ol>
+        //             </div>
+        // ReactDOM.render(VDom, document.getElementById('container'))
+        
+        // 函数式组件
+        // function Demo () {
+        //     console.log(this)// undefined
+        //     return <h2>我使用函数定义的组件（适用于【简单组件】的定义）</h2>
+        // }
+        // ReactDOM.render(<Demo />, document.getElementById('container'))
+
+        // 类式组件
+        // class MyComponent extends React.Component {
+        //     render () {
+        //         return <h2>我使用函数定义的组件（适用于【简单组件】的定义）</h2>
+        //     }
+        // }
+        // ReactDOM.render(<MyComponent />, document.getElementById('container'))
+        
+        /*
+        class Weather extends React.PureComponent {
+            constructor (props) {
+                super(props)
+                this.state = {
+                    isFlag: false
+                }
+                this.sub = this.sub.bind(this)
+            }
+            _setState () {
+                this.setState({
+                    isFlag: !this.state.isFlag
+                })
+            }
+            sub () {
+                this._setState()
+            }
+            add = () => {
+                this._setState()
+            }
+            render () {
+                let { isFlag } = this.state
+                return <div>
+                        今天天气很热，{ isFlag ? '对的' : '错误' }
+                        <button onClick={ this.sub }>-</button>
+                        <button onClick={ this.add }>+</button>
+                    </div>
+            }
+        }
+        ReactDOM.render(<Weather />, document.getElementById('container'))
+        */
+
+
+        // class MyComponent extends React.Component {
+        //     constructor (props) {
+        //         super(props)
+        //     }
+        //     state = {
+        //         isFlag: false
+        //     }
+        //     changeFlag = () => {
+        //         const { isFlag } = this.state
+        //         this.setState({ isFlag: !isFlag })
+        //     }
+        //     render () {
+        //         const { isFlag } = this.state
+        //         return <h1 onClick={ this.changeFlag }>哈哈哈{ isFlag ? 'yes' : 'no' }</h1>
+        //     }
+        // }
+        // ReactDOM.render(<MyComponent />, document.getElementById('container'))
+
+
+        // class Person extends React.Component {
+        //     render () {
+        //         const { dataList } = this.props
+        //         return (
+        //             <ul>
+        //                 {
+        //                     dataList.map((item, index) => {
+        //                         return (
+        //                             <li key={index}>
+        //                                 <p>姓名：{item.name}</p>
+        //                                 <p>性别：{item.sex}</p>
+        //                                 <p>年龄：{item.age}</p>
+        //                             </li>
+        //                         )
+        //                     })
+        //                 }
+        //             </ul>
+        //         )
+        //     }
+        // }
+        // const dataList = [
+        //     { name: 'pxy', sex: '男', age: 30 },
+        //     { name: 'fremember', sex: '男', age: 30 }
+        // ]
+        // 属性传递方式1
+        // ReactDOM.render(<Person dataList={dataList} />, document.getElementById('container'))
+
+        // const p = { name: 'pxy', sex: '男', age: 30 }
+        // class Person extends React.Component {
+        //     render () {
+        //         const { name, sex, age } = this.props
+        //         return (
+        //             <ul>
+        //                 <li>姓名：{name}</li>
+        //                 <li>性别：{sex}</li>
+        //                 <li>年龄：{age}</li>
+        //             </ul>
+        //         )
+        //     }
+        // }
+
+        // 属性校验
+        // function clickEvent () {
+        //     console.log(123)
+        // }
+        // const p = { name: 'pxy', sex: '男', clickEvent: clickEvent }
+        // class Person extends React.Component {
+        //     render () {
+        //         const { name, sex, age, clickEvent } = this.props
+        //         return (
+        //             <ul>
+        //                 <li onClick={clickEvent}>姓名：{name}</li>
+        //                 <li>性别：{sex}</li>
+        //                 <li>年龄：{age}</li>
+        //             </ul>
+        //         )
+        //     }
+        // }
+        // // 标签属性的类型和必填项的限制
+        // Person.propTypes = {
+        //     name: PropTypes.string.isRequired,// 限制类形式字符串，且必传
+        //     age: PropTypes.number,
+        //     clickEvent: PropTypes.func// 显示类型为函数
+        // }
+        // // 标签属性的默认值
+        // Person.defaultProps = {
+        //     age: 18
+        // }
+        // ReactDOM.render(<Person { ...p } />, document.getElementById('container'))
+
+        // props简写
+        // function clickEvent () {
+        //     console.log(123)
+        // }
+        // const p = { name: 'pxy', sex: '男', clickEvent: clickEvent }
+        // class Person extends React.Component {
+        //     static propTypes = {
+        //         name: PropTypes.string.isRequired,// 限制类形式字符串，且必传
+        //         age: PropTypes.number,
+        //         clickEvent: PropTypes.func// 显示类型为函数
+        //     }
+        //     static defaultProps = {
+        //         age: 18
+        //     }
+        //     render () {
+        //         const { name, sex, age, clickEvent } = this.props
+        //         return (
+        //             <ul>
+        //                 <li onClick={clickEvent}>姓名：{name}</li>
+        //                 <li>性别：{sex}</li>
+        //                 <li>年龄：{age}</li>
+        //             </ul>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Person { ...p } />, document.getElementById('container'))
+
+        // 构造函数中的props
+        // const p = { name: 'pxy', sex: '男' }
+        // class Person extends React.Component {
+        //     constructor (props) {
+        //         super(props)
+        //         console.log(props)
+        //     }
+        //     static propTypes = {
+        //         name: PropTypes.string.isRequired,
+        //         age: PropTypes.number
+        //     }
+        //     static defaultProps = {
+        //         age: 18
+        //     }
+        //     render () {
+        //         const { name, sex, age } = this.props
+        //         return (
+        //             <ul>
+        //                 <li>姓名：{name}</li>
+        //                 <li>性别：{sex}</li>
+        //                 <li>年龄：{age}</li>
+        //             </ul>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Person { ...p } />, document.getElementById('container'))
+
+        // 函数式组件中使用props
+        // const p = { name: 'pxy', sex: '男' }
+        // function Person (props) {
+        //     const { name, sex, age } = props
+        //     return (
+        //         <ul>
+        //             <li>姓名：{name}</li>
+        //             <li>姓名：{sex}</li>
+        //             <li>姓名：{age}</li>
+        //         </ul>
+        //     )
+        // }
+        // Person.propTypes = {
+        //     name: PropTypes.string.isRequired,// 限制类形式字符串，且必传
+        //     age: PropTypes.number,
+        //     clickEvent: PropTypes.func// 显示类型为函数
+        // }
+        // Person.defaultProps = {
+        //     age: 18
+        // }
+        // ReactDOM.render(<Person { ...p } />, document.getElementById('container'))
+
+        // 属性传递方式2
+        // ReactDOM.render(<Person {...p} />, document.getElementById('container'))
+
+        // 字符串类型ref属性
+        // class Demo extends React.Component {
+        //     clickEvent = () => {
+        //         console.log(this.refs.inp1.value)
+        //     }
+        //     blurEvent = () => {
+        //         console.log(this.refs.inp2.value)
+        //     }
+        //     render () {
+        //         return (
+        //             <div>
+        //                 <input placeholder="点击按钮展示提示" ref="inp1" /><button onClick={this.clickEvent}>点击展示左侧提示</button>
+        //                 <input placeholder="失去焦点展示右侧提示" ref="inp2" onBlur={this.blurEvent} />
+        //             </div>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Demo />, document.getElementById('container'))
+
+        // 回调函数形式ref
+        // class Demo extends React.Component {
+        //     state = {
+        //         isFlag: false
+        //     }
+        //     clickEvent = () => {
+        //         console.log(this.inp1.value)
+        //     }
+        //     changeFlag = () => {
+        //         this.setState({ isFlag: !this.state.isFlag })
+        //     }
+        //     saveInput = (c) => {
+        //         this.inp1 = c
+        //         console.log(c)
+        //     }
+        //     render () {
+        //         return (
+        //             <div>
+        //                 {/* 函数式 */}
+        //                 {/* <input placeholder="点击按钮展示提示" ref={ (a) => { this.inp1 = a; console.log(1111) } } /> */}
+                        
+        //                 {/* class的绑定 */}
+        //                 <input placeholder="点击按钮展示提示" ref={ this.saveInput } />
+        //                 <button onClick={ this.clickEvent }>点击展示左侧提示</button>
+        //                 <button onClick={ this.changeFlag }>修改flag</button>
+        //             </div>
+        //         )
+        //     }
+        // }
+
+        // ReactDOM.render(<Demo />, document.getElementById('container'))
+
+        // class Demo extends React.Component {
+        //     // React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点，该容器只能存一个，也就是说一个变量对应一个节点
+        //     myRef = React.createRef()
+        //     showData = () => {
+        //         console.log(this.myRef.current.value)
+        //     }
+        //     render () {
+        //         return (
+        //             <div>
+        //                 <input text="type" ref={this.myRef} placeholder="点击按钮提示数据" />
+        //                 <button onClick={this.showData}>点击按钮</button>
+        //             </div>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Demo />, document.getElementById('container'))
+
+    </script>
+    <!-- <script type="text/javascript">
+        /* 使用js语法 */
+        const VDom = React.createElement('div', { id: 'title' }, React.createElement('h1', { id: 'h1' }, 'hello H1'))
+        ReactDOM.render(VDom, document.getElementById('container'))
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!--
+ * @Author: fremember
+ * @Date: 2021-08-16 20:32:16
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件、高阶函数</title>
+    <style>
+        .title {
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        // class Demo extends React.Component {
+        //     myRef = React.createRef()
+        //     showData = () => {
+        //         console.log(this.myRef.current.value)
+        //     }
+        //     render () {
+        //         return (
+        //             <div>
+        //                 <input text="type" ref={this.myRef} placeholder="点击按钮提示数据" />
+        //                 <button onClick={this.showData}>点击按钮</button>
+        //             </div>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Demo />, document.getElementById('container'))
+
+        // 非受控组件
+        // class Login extends React.Component {
+        //     handleSubmit = (event) => {
+        //         event.preventDefault();
+        //         const { username, password } = this
+        //         console.log(`你输入的用户名是：${username.value}，你输入的密码是：${password.value}`)
+        //     }
+        //     render () {
+        //         return (
+        //             <form onSubmit={this.handleSubmit}>
+        //                 <label>用户名：</label><input ref={ c => this.username = c } type="text" /><br />
+        //                 <label>密码：</label><input ref={ c => this.password = c } type="password" /><br />
+        //                 <button>登录</button>
+        //             </form>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Login />, document.getElementById('container'))
+
+        // 受控组件
+        // class Login extends React.Component {
+        //     state = {
+        //         username: '',
+        //         password: ''
+        //     }
+        //     handleSubmit = (e) => {
+        //         e.preventDefault()
+        //         console.log(this.state)
+        //     }
+        //     usernameChange = (e) => {
+        //         this.setState({ username: e.target.value })
+        //     }
+        //     passwordChange = (e) => {
+        //         this.setState({ password: e.target.value })
+        //     }
+        //     render () {
+        //         return (
+        //             <form action="#" onSubmit={this.handleSubmit}>
+        //                 <label>用户名：</label><input onChange={this.usernameChange} type="text" /><br />
+        //                 <label>密码：</label><input onChange={this.passwordChange} type="password" /><br />
+        //                 <button>登录</button>
+        //             </form>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Login />, document.getElementById('container'))
+
+        // class Login extends React.Component {
+        //     state = {
+        //         username: '',
+        //         password: ''
+        //     }
+        //     handleSubmit = (e) => {
+        //         e.preventDefault()
+        //         console.log(this.state)
+        //     }
+        //     saveFormData = (dataType) => {// 高阶函数+函数柯里化
+        //         return (e) => {
+        //             this.setState({ [dataType]: e.target.value })
+        //         }
+        //     }
+        //     render () {
+        //         return (
+        //             <form action="#" onSubmit={this.handleSubmit}>
+        //                 <label>用户名：</label><input onChange={this.saveFormData('username')} type="text" /><br />
+        //                 <label>密码：</label><input onChange={this.saveFormData('password')} type="password" /><br />
+        //                 <button>登录</button>
+        //             </form>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Login />, document.getElementById('container'))
+
+        // class Login extends React.Component {
+        //     state = {
+        //         username: '',
+        //         password: ''
+        //     }
+        //     handleSubmit = (e) => {
+        //         e.preventDefault()
+        //         console.log(this.state)
+        //     }
+        //     saveFormData = (dataType, e) => {
+        //         this.setState({ [dataType]: e.target.value })
+        //     }
+        //     render () {
+        //         return (
+        //             <form action="#" onSubmit={this.handleSubmit}>
+        //                 <label>用户名：</label><input onChange={e => this.saveFormData('username', e)} type="text" /><br />
+        //                 <label>密码：</label><input onChange={e => this.saveFormData('password', e)} type="password" /><br />
+        //                 <button>登录</button>
+        //             </form>
+        //         )
+        //     }
+        // }
+        // ReactDOM.render(<Login />, document.getElementById('container'))
+
+    </script>
+</body>
+</html>

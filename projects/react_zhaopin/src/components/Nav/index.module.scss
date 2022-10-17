@@ -1,0 +1,15 @@
+@import 'assets/scss/mixins.scss';
+.nav {
+    @include posBL(0, 0);
+    @include width(100vw);
+    @include textAlign(center);
+    &::after {
+        content: '';
+        @include pos(absolute);
+        @include posTL(0, 0);
+        @include width(100%);
+        height: 1px;
+        background: #ddd;
+        transform: scaleY(0.5);
+    }
+}

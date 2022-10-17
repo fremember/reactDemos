@@ -1,0 +1,25 @@
+/* flex布局相关 */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-1 {
+    flex: 1;
+}
+/* 定位相关 */
+.pos-r {
+    position: relative;
+}
+.pos-a {
+    position: absolute;
+}
+.pos-f {
+    position: fixed;
+}
+.pos-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

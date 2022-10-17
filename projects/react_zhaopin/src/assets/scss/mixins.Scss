@@ -1,0 +1,55 @@
+// 宽高相关
+@mixin width ($w: 0) {
+    width: $w;
+}
+@mixin height ($h: 0) {
+    height: $h;
+}
+@mixin WH ($w: 0, $h: 0) {
+    @include width($w);
+    @include hieght($h);
+}
+// 竖屏位置
+@mixin textAlign ($ta: center) {
+    text-align: $ta;
+}
+// felx布局相关
+@mixin alignItems ($ai: center) {
+    align-items: $ai;
+}
+@mixin justifyContent ($jc: center) {
+    justify-content: $jc;
+}
+// 位置相关
+@mixin pos ($pos: relative) {
+    position: $pos;
+}
+@mixin posT ($top: 0) {
+    top: $top;
+}
+@mixin posR ($right: 0) {
+    right: $right;
+}
+@mixin posB ($bot: 0) {
+    bottom: $bot;
+}
+@mixin posL ($left: 0) {
+    left: $left;
+}
+
+@mixin posTL ($top: 0, $left: 0) {
+    @include posT($top);
+    @include posL($left);
+}
+@mixin posTR ($top: 0, $right: 0) {
+    @include posT($top);
+    @include posR($right);
+}
+@mixin posBL ($bot: 0, $left: 0) {
+    @include posB($bot);
+    @include posL($left);
+}
+@mixin posBR ($bot: 0, $right: 0) {
+    @include posB($bot);
+    @include posR($right);
+}

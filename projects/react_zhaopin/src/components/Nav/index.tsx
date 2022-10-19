@@ -31,12 +31,12 @@ export const Nav: React.FC = () => {
             { url: '/user', title: '我的', icon: IconfontUser }
         ],
         { pathname } = useLocation();// 里面字段是hash、key、pathname、search、state
-   
     return <>
         <nav className={ `${ commonStyles['pos-f'] } ${ commonStyles['flex-center'] } ${ styles.nav }` }>
             {
                 linkList.map((link: LinkItem) => (
-                    <NavLink className={ `${ commonStyles['flex-1'] } ${ pathname === link.url ? 'active' : '' }`  } to={ link.url } key={ link.url }>
+                    // 首次进入的时候，要单独处理第一个路由的高亮
+                    <NavLink className={ `${ commonStyles['flex-1'] } ${ (pathname === link.url) || (pathname === '/' && link.url === '/job') ? 'active' : '' }`  } to={ link.url } key={ link.url }>
                         <link.icon /><br />
                         { link.title }
                     </NavLink>

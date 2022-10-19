@@ -62,7 +62,9 @@ a:hover,
 a:active,
 a.active {
     outline: 0;
-    color: #08c;
+    background-image: linear-gradient(to bottom, #ED60FD, #5C7DFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 abbr[title] {

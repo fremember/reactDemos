@@ -7,7 +7,7 @@
 }
 @mixin WH ($w: 0, $h: 0) {
     @include width($w);
-    @include hieght($h);
+    @include height($h);
 }
 // 竖屏位置
 @mixin textAlign ($ta: center) {

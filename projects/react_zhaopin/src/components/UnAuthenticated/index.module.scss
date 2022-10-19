@@ -1,0 +1,5 @@
+@import 'assets/scss/mixins.scss';
+.unAuthenticated {
+    @include WH(100vw, 100vh);
+    background: linear-gradient(to bottom, #ED60FD, #5C7DFF);
+}

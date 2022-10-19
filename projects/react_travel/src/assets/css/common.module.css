@@ -1,0 +1,20 @@
+.flex {
+    display: flex;
+}
+.direction-column {
+    flex-direction: column;
+}
+.flex_1 {
+    flex: 1;
+}
+.ai-c {
+    align-items: center;
+}
+.jc-c {
+    justify-content: center;
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

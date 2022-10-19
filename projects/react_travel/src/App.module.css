@@ -1,0 +1,8 @@
+.App {
+    /* height: 100vh; */
+    background: rgba(0, 0, 0, 0.08);
+}
+.page-content {
+    margin: 0 auto;
+    width: 1230px;
+}

@@ -63,7 +63,7 @@ a:active,
 a.active {
     outline: 0;
     background-image: linear-gradient(to bottom, #ED60FD, #5C7DFF);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 

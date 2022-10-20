@@ -1,3 +1,28 @@
+// 外边距
+// 内边距
+@mixin padding ($pad: 0) {
+    padding: $pad;
+}
+@mixin paddingT ($padt: 0) {
+    padding-top: $padt;
+}
+@mixin paddingR ($padr: 0) {
+    padding-right: $padr;
+}
+@mixin paddingB ($padb: 0) {
+    padding-bottom: $padb;
+}
+@mixin paddingL ($padl: 0) {
+    padding-left: $padl;
+}
+@mixin paddingTB ($padt: 0, $padb: 0) {
+    @include paddingT($padt);
+    @include paddingB($padb);
+}
+@mixin paddingLR ($padl: 0, $padr: 0) {
+    @include paddingR($padr);
+    @include paddingL($padl);
+}
 // 宽高相关
 @mixin width ($w: 0) {
     width: $w;
@@ -19,6 +44,9 @@
 }
 @mixin justifyContent ($jc: center) {
     justify-content: $jc;
+}
+@mixin flexDirectiuon ($rd: row) {
+    flex-direction: $rd;
 }
 // 位置相关
 @mixin pos ($pos: relative) {
@@ -52,4 +80,14 @@
 @mixin posBR ($bot: 0, $right: 0) {
     @include posB($bot);
     @include posR($right);
+}
+
+@mixin borderRadius ($br: 0) {
+    border-radius: $br;
+}
+@mixin fontsize ($fs: 0) {
+    font-size: $fs;
+}
+@mixin color ($c: #333) {
+    color: $c;
 }

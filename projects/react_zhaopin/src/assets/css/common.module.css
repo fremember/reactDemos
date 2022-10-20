@@ -1,4 +1,7 @@
 /* flex布局相关 */
+.flex {
+    display: flex;
+}
 .flex-center {
     display: flex;
     align-items: center;
@@ -28,4 +31,10 @@
 }
 .dib {
     display: inline-block;
+}
+/* 高亮激活状态 */
+.common-active {
+    background-image: linear-gradient(to bottom, #ED60FD, #5C7DFF);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

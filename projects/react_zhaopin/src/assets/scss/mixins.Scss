@@ -1,27 +1,47 @@
 // 外边距
+@mixin marginT ($t: 0) {
+    margin-top: $t;
+}
+@mixin marginR ($r: 0) {
+    margin-right: $r;
+}
+@mixin marginB ($b: 0) {
+    margin-bottom: $b;
+}
+@mixin marginL ($l: 0) {
+    margin-left: $l;
+}
+@mixin marginTB ($t: 0, $b: 0) {
+    @include marginT($t);
+    @include marginB($b);
+}
+@mixin marginLR ($l: 0, $r: 0) {
+    @include marginR($r);
+    @include marginL($l);
+}
 // 内边距
 @mixin padding ($pad: 0) {
     padding: $pad;
 }
-@mixin paddingT ($padt: 0) {
-    padding-top: $padt;
+@mixin paddingT ($t: 0) {
+    padding-top: $t;
 }
-@mixin paddingR ($padr: 0) {
-    padding-right: $padr;
+@mixin paddingR ($r: 0) {
+    padding-right: $r;
 }
-@mixin paddingB ($padb: 0) {
-    padding-bottom: $padb;
+@mixin paddingB ($b: 0) {
+    padding-bottom: $b;
 }
-@mixin paddingL ($padl: 0) {
-    padding-left: $padl;
+@mixin paddingL ($l: 0) {
+    padding-left: $l;
 }
-@mixin paddingTB ($padt: 0, $padb: 0) {
-    @include paddingT($padt);
-    @include paddingB($padb);
+@mixin paddingTB ($t: 0, $b: 0) {
+    @include paddingT($t);
+    @include paddingB($b);
 }
-@mixin paddingLR ($padl: 0, $padr: 0) {
-    @include paddingR($padr);
-    @include paddingL($padl);
+@mixin paddingLR ($l: 0, $r: 0) {
+    @include paddingR($r);
+    @include paddingL($l);
 }
 // 宽高相关
 @mixin width ($w: 0) {

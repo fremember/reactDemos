@@ -1,15 +1,58 @@
 @import 'assets/scss/mixins.scss';
 .unAuthenticated {
     @include WH(100vw, 100vh);
-    // background: linear-gradient(to bottom, #ED60FD, #5C7DFF);
+    background: url('./../../assets/images/unAuthenticated_bg.jpg') no-repeat center;
+    background-size: cover;
     section {
         @include flexDirectiuon(column);
-        @include padding(0.5rem);
-        @include width(7rem);
-        @include borderRadius(.25rem);
-        box-shadow: 0 0 0.25rem rgba(221, 221, 221, .5);
-        .title {
-            @include fontsize(.5rem);
+        @include paddingTB(2.25rem, 1.25rem);
+        @include paddingLR(1.75rem, 1.75rem);
+        @include WH(100%, 100%);
+        background: rgba(40, 57, 101, .9);
+        .tabs {
+            li {
+                @include paddingB(0.15rem);
+                @include fontsize(0.55rem);
+                &.active {
+                    border-bottom: 0.05rem solid #1161ee;
+                }
+                &:not(:last-child) {
+                    @include marginR(0.4rem);
+                }
+            } 
+        }
+    }
+}
+/*
+    媒体查询可用于检查许多事情，诸如：
+        视口的宽度和高度
+        设备的宽度和高度
+        方向（手机或平板电脑处于横屏(landscape)还是竖屏(portrait)模式？）
+        分辨率
+*/
+@media only screen and (orientation: landscape) {
+    .unAuthenticated {
+        section {
+            // @include width(50%);
+            .title {
+                @include fontsize(.3rem);
+            }
+            .about-count {
+                @include fontsize(.15rem);
+            }
+        }
+    }
+}
+@media only screen and (orientation: portrait) {
+    .unAuthenticated {
+        section {
+            // @include width(70%);
+            .title {
+                @include fontsize(.5rem);
+            }
+            .about-count {
+                @include fontsize(.25rem);
+            }
         }
     }
 }
